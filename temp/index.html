@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+    <title>ufo</title>
+</head>
+<body>
+    <h1>ufo</h1>
+    <form method="post" action="{{url_for('index')}}">
+        <select name="endpoint">
+            <option value="Get">Get</option>
+            <option value="Post">Post</option>
+        </select>
+        <input type="url" name="url" required>
+        <select name="htmlCode">
+            <option value="raw">raw</option>
+            <option value="Preview">Preview</option>
+        </select>
+        <button type="submit">send</button>
+    </form>
+    <div class="prams" id="prams"></div>
+    <div class="res" id="res">
+        {% if htmlCode == "raw" %}
+            <pre>{{ res }}</pre>
+        {% elif htmlCode == "Preview" %}
+            {{ res|safe }}
+        {% endif %}
+    </div>
+</body>
+</html>
